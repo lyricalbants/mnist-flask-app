@@ -1,0 +1,62 @@
+/* static/css/styles.css */
+
+/* Set the overall background and font for the page */
+body {
+  background-color: #f8f9fa;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container adjustments */
+.container {
+  padding-top: 50px;
+}
+
+/* Header styling for the main title */
+h1 {
+  font-size: 2.5rem;
+  color: #343a40;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Form styling: spacing for inputs and labels */
+#upload-form .form-group {
+  margin-bottom: 20px;
+}
+
+/* Image preview customization */
+#preview {
+  max-width: 200px;
+  margin-top: 10px;
+  border: 2px solid #dee2e6;
+  border-radius: 4px;
+}
+
+/* Result section styling */
+#result {
+  margin-top: 20px;
+}
+
+/* Alerts font size adjustments */
+.alert {
+  font-size: 1.1rem;
+}
+
+/* Style for the probability chart */
+canvas#probabilityChart {
+  margin-top: 30px;
+}
+
+/* Responsive design for small devices */
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+  canvas#probabilityChart {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
