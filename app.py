@@ -1,4 +1,4 @@
-from Flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify
 import os
 import numpy as np
 from PIL import Image
@@ -69,6 +69,32 @@ def predict():
         return jsonify(result)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/predict_sample', methods=['GET'])
+def predict_sample():
+    # Get the sample image filename from the query parameter
+    sample_image = request.args.get('image')
+    if not sample_image:
+        return jsonify({'error': 'No sample image specified.'}), 400
+
+    # Construct the full path (assuming samples are stored in static/samples/)
+    sample_path = os.path.join(app.root_path, 'static', sample_image)
+    if not os.path.exists(sample_path):
+        return jsonify({'error': 'Sample image not found.'}), 404
+
+    try:
+        processed_image = preprocess_image(sample_path)
+        probabilities = predict_digit(processed_image)
+        predicted_digit = int(np.argmax(probabilities))
+        
+        result = {
+            'predicted_digit': predicted_digit,
+            'probabilities': probabilities.tolist()[0]
+        }
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
