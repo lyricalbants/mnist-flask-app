@@ -1,17 +1,42 @@
 $(document).ready(function() {
-  // File image preview functionality
-  $("#file").change(function() {
-    if (this.files && this.files[0]) {
+  // Enhanced File image preview functionality
+  $("#file").on("change", function() {
+    let file = this.files[0];
+    if (file) {
+      // Check if the file type starts with 'image/'
+      if (!file.type.startsWith("image/")) {
+        alert("Please select a valid image file.");
+        $(this).val("");           // Clear the file input
+        $("#preview").hide();       // Hide the preview image if visible
+        return;
+      }
+      // Proceed with preview if valid
       var reader = new FileReader();
       reader.onload = function(e) {
         $("#preview").attr("src", e.target.result).fadeIn();
       };
-      reader.readAsDataURL(this.files[0]);
+      reader.readAsDataURL(file);
     }
   });
   
-  // AJAX form submission for file upload
-  $("#upload-form").submit(function(e) {
+  // Enhanced AJAX form submission for file upload
+  $("#upload-form").on("submit", function(e) {
+    // Check if a file is selected
+    let fileInput = $("#file")[0];
+    if (!fileInput.files[0]) {
+      alert("Please select an image file before submitting.");
+      e.preventDefault();
+      return false;
+    }
+    
+    // Additional file type check before submission
+    let file = fileInput.files[0];
+    if (!file.type.startsWith("image/")) {
+      alert("The selected file is not a valid image file.");
+      e.preventDefault();
+      return false;
+    }
+    
     e.preventDefault();
     var formData = new FormData(this);
     $("#result").html('<div class="alert alert-info">Predicting…</div>');
@@ -44,7 +69,7 @@ $(document).ready(function() {
       type: "GET",
       data: { image: sampleFilename },
       success: function(data) {
-        if(data.error) {
+        if (data.error) {
           $("#result").html('<div class="alert alert-danger">' + data.error + '</div>');
         } else {
           displayResult(data);
@@ -103,9 +128,7 @@ $(document).ready(function() {
           }
         },
         plugins: {
-          legend: {
-            display: false
-          }
+          legend: { display: false }
         }
       }
     });

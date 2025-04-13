@@ -77,7 +77,7 @@ def predict_sample():
     if not sample_image:
         return jsonify({'error': 'No sample image specified.'}), 400
 
-    # Construct the full path (assuming samples are stored in static/samples/)
+    # Construct the full path
     sample_path = os.path.join(app.root_path, 'static', sample_image)
     if not os.path.exists(sample_path):
         return jsonify({'error': 'Sample image not found.'}), 404
