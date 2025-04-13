@@ -10,13 +10,13 @@ This repository contains a Flask-based web application that allows users to pred
 - **ONNX Model Inference:** The application uses ONNX Runtime to load and run an ONNX model for predictions.
 
 ## Project Structure
-mnist-flask-app/ ├── app.py # Main Flask application ├── requirements.txt # List of dependencies ├── README.md # This README file ├── static/ │   ├── css/ │   │ └── styles.css # Custom CSS (optional) │   ├── js/ │   │ └── script.js # Custom JavaScript │   └── samples/ # Sample images for predictions │ ├── sample0.png │ ├── sample1.png │ ├── sample2.png │ ├── sample3.png │ └── sample4.png └── templates/ └── index.html # HTML template for the ap
+mnist-flask-app/ | app.py # Main Flask application  | requirements.txt # List of dependencies |README.md # This README file | static/ │   | css/    │ styles.css # Custom CSS (optional) │   | js/ │   │  script.js # Custom JavaScript │   samples/ # Sample images for predictions │  sample0.png │ sample1.png │  sample2.png │ sample3.png │ sample4.png | templates/ index.html # HTML template for the app
 
 
 ## Installation
 
 ### 1. Clone the Repository
-git clone https://github.com/<yourusername>/mnist-flask-app.git
+git clone https://github.com/lyricalbants/mnist-flask-app
 cd mnist-flask-app
 
 ### 2. Create a Virtual Environment
