@@ -1,0 +1,18 @@
+# Virtual environment files
+venv/
+tf_env/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Uploads folder 
+uploads/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific files
+.DS_Store
+
